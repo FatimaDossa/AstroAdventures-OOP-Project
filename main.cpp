@@ -17,7 +17,7 @@ int main()
 
     // Load the instructions texture (image)
     sf::Texture instructionsTexture;
-    if (!instructionsTexture.loadFromFile("instructions.png"))  // Ensure you have this file
+    if (!instructionsTexture.loadFromFile("INSTRUCTIONS_BACKBUTTON.png"))  // Ensure you have this file
         return -1;
 
     // Create a sprite for the instructions image and set the texture
@@ -31,6 +31,10 @@ int main()
     // Define the "Instructions" button coordinates
     sf::Vector2f instructionsButtonPos(40, 760);  // Top-left corner of the button
     sf::Vector2f instructionsButtonSize(300, 115);  // Width and height of the button
+
+    // Define the "Back" button coordinates on the instructions page
+    sf::Vector2f backButtonPos(405, 915);  // Top-left corner of the back button
+    sf::Vector2f backButtonSize(300, 115);  // Width and height of the back button
 
     // Variable to track if instructions should be displayed
     bool showInstructions = false;
@@ -64,6 +68,15 @@ int main()
                     // Show the instructions when the button is clicked
                     showInstructions = true;
                 }
+
+                // Check if the mouse click is inside the "Back" button area
+                if (showInstructions && 
+                    mousePos.x >= backButtonPos.x && mousePos.x <= backButtonPos.x + backButtonSize.x &&
+                    mousePos.y >= backButtonPos.y && mousePos.y <= backButtonPos.y + backButtonSize.y)
+                {
+                    // Go back to the main page when the back button is clicked
+                    showInstructions = false;
+                }
             }
         }
 
@@ -74,6 +87,7 @@ int main()
         if (showInstructions)
         {
             window.draw(instructionsSprite);  // Draw the instructions image
+            // Optionally, draw the back button here (if you have a visual representation)
         }
         else
         {
