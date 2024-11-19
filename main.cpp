@@ -24,20 +24,34 @@ int main()
     sf::Sprite instructionsSprite;
     instructionsSprite.setTexture(instructionsTexture);
 
+    // Load the levels texture (image)
+    sf::Texture levelsTexture;
+    if (!levelsTexture.loadFromFile("LEVELS.png"))  // Ensure you have this file
+        return -1;
+
+    // Create a sprite for the levels image and set the texture
+    sf::Sprite levelsSprite;
+    levelsSprite.setTexture(levelsTexture);
+
     // Define the "Exit" button coordinates on the image
     sf::Vector2f exitButtonPos(770, 750);  // Top-left corner of the button
     sf::Vector2f exitButtonSize(300, 115);  // Width and height of the button
 
     // Define the "Instructions" button coordinates
-    sf::Vector2f instructionsButtonPos(40, 760);  // Top-left corner of the button
+    sf::Vector2f instructionsButtonPos(40,760);  // Top-left corner of the button
     sf::Vector2f instructionsButtonSize(300, 115);  // Width and height of the button
+
+    // Define the "Play" button coordinates
+    sf::Vector2f playButtonPos(405, 770);  // Top-left corner of the play button
+    sf::Vector2f playButtonSize(300, 115);  // Width and height of the button
 
     // Define the "Back" button coordinates on the instructions page
     sf::Vector2f backButtonPos(405, 915);  // Top-left corner of the back button
     sf::Vector2f backButtonSize(300, 115);  // Width and height of the back button
 
-    // Variable to track if instructions should be displayed
+    // Variables to track which page is currently displayed
     bool showInstructions = false;
+    bool showLevels = false;
 
     while (window.isOpen())
     {
@@ -69,6 +83,14 @@ int main()
                     showInstructions = true;
                 }
 
+                // Check if the mouse click is inside the "Play" button area
+                if (mousePos.x >= playButtonPos.x && mousePos.x <= playButtonPos.x + playButtonSize.x &&
+                    mousePos.y >= playButtonPos.y && mousePos.y <= playButtonPos.y + playButtonSize.y)
+                {
+                    // Show the levels when the play button is clicked
+                    showLevels = true;
+                }
+
                 // Check if the mouse click is inside the "Back" button area
                 if (showInstructions && 
                     mousePos.x >= backButtonPos.x && mousePos.x <= backButtonPos.x + backButtonSize.x &&
@@ -83,11 +105,15 @@ int main()
         // Clear the window
         window.clear();
 
-        // Draw the main sprite (image) or instructions based on the state
-        if (showInstructions)
+        // Draw based on the current state
+        if (showLevels)
+        {
+            window.draw(levelsSprite);  // Draw the levels image
+        }
+        else if (showInstructions)
         {
             window.draw(instructionsSprite);  // Draw the instructions image
-            // Optionally, draw the back button here (if you have a visual representation)
+            window.draw(sf::RectangleShape(backButtonSize)); // Optionally draw the back button
         }
         else
         {
