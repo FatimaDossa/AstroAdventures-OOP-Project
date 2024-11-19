@@ -38,7 +38,7 @@ int main()
     sf::Vector2f exitButtonSize(300, 115);  // Width and height of the button
 
     // Define the "Instructions" button coordinates
-    sf::Vector2f instructionsButtonPos(40,760);  // Top-left corner of the button
+    sf::Vector2f instructionsButtonPos(40, 760);  // Top-left corner of the button
     sf::Vector2f instructionsButtonSize(300, 115);  // Width and height of the button
 
     // Define the "Play" button coordinates
@@ -47,7 +47,11 @@ int main()
 
     // Define the "Back" button coordinates on the instructions page
     sf::Vector2f backButtonPos(405, 915);  // Top-left corner of the back button
-    sf::Vector2f backButtonSize(300, 115);  // Width and height of the back button
+    sf::Vector2f backButtonSize(300, 115);  // Width and height of the button
+
+    // Define the "Back" button coordinates on the levels page
+    sf::Vector2f levelsBackButtonPos(405, 915);  // Top-left corner of the back button on levels
+    sf::Vector2f levelsBackButtonSize(300, 115);  // Width and height of the button
 
     // Variables to track which page is currently displayed
     bool showInstructions = false;
@@ -91,13 +95,22 @@ int main()
                     showLevels = true;
                 }
 
-                // Check if the mouse click is inside the "Back" button area
+                // Check if the mouse click is inside the "Back" button area on instructions page
                 if (showInstructions && 
                     mousePos.x >= backButtonPos.x && mousePos.x <= backButtonPos.x + backButtonSize.x &&
                     mousePos.y >= backButtonPos.y && mousePos.y <= backButtonPos.y + backButtonSize.y)
                 {
                     // Go back to the main page when the back button is clicked
                     showInstructions = false;
+                }
+
+                // Check if the mouse click is inside the "Back" button area on levels page
+                if (showLevels && 
+                    mousePos.x >= levelsBackButtonPos.x && mousePos.x <= levelsBackButtonPos.x + levelsBackButtonSize.x &&
+                    mousePos.y >= levelsBackButtonPos.y && mousePos.y <= levelsBackButtonPos.y + levelsBackButtonSize.y)
+                {
+                    // Go back to the main page when the back button on levels is clicked
+                    showLevels = false;
                 }
             }
         }
@@ -109,11 +122,12 @@ int main()
         if (showLevels)
         {
             window.draw(levelsSprite);  // Draw the levels image
+            
         }
         else if (showInstructions)
         {
             window.draw(instructionsSprite);  // Draw the instructions image
-            window.draw(sf::RectangleShape(backButtonSize)); // Optionally draw the back button
+            
         }
         else
         {
