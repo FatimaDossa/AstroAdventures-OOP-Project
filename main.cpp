@@ -13,11 +13,11 @@ int main()
 
     // Create a sprite for the main image and set the texture
     sf::Sprite sprite;
-    sprite.setTexture(texture);
+    sprite.setTexture(texture); //uh
 
     // Load the instructions texture (image)
     sf::Texture instructionsTexture;
-    if (!instructionsTexture.loadFromFile("INSTRUCTIONS_BACKBUTTON.png"))  // Ensure you have this file
+    if (!instructionsTexture.loadFromFile("INSTRUCTIONS_BACKBUTTON.png"))  
         return -1;
 
     // Create a sprite for the instructions image and set the texture
