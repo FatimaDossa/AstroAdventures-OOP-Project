@@ -1,5 +1,5 @@
 # AstroAdventures
-Astro Adventure is an exciting, space-themed adventure game that immerses players in a quest to discover aliens in outer space. Navigate through the vast cosmos while avoiding meteors, asteroids, and other cosmic dangers, all while collecting valuable gems. With vibrant visuals and engaging gameplay, this single-player game offers a fun and challenging experience for players of all ages.
+Along with my partners, Fatima Hasan and Hammas Abid, we made the game Astro Adventure as a part of our OOP project. It is an exciting, space-themed adventure game that immerses players in a quest to discover aliens in outer space. Navigate through the vast cosmos while avoiding meteors, asteroids, and other cosmic dangers, all while collecting valuable gems. With vibrant visuals and engaging gameplay, this single-player game offers a fun and challenging experience for players of all ages.
 
 # Objectives
 Create a space-themed adventure game with vibrant visuals and intuitive gameplay.
